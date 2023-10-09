@@ -3,9 +3,9 @@
 Benchmark to compare various z80 assembler. Still in its infency, so many things to do before being usefull.
 Only few assembler are currently tested:
 
-- ` basm` https://cpcsdk.github.io/rust.cpclib/basm/
-- `rasm` http://rasm.wikidot.com/english-index:home
-- `sjamsplus` https://z00m128.github.io/sjasmplus/documentation.html
+- `basm` https://cpcsdk.github.io/rust.cpclib/basm/. `cargo` from the `rust` toolchain is expected.
+- `rasm` http://rasm.wikidot.com/english-index:home. `gcc` and `make` are expected.
+- `sjamsplus` https://z00m128.github.io/sjasmplus/documentation.html. `gcc` and `make` are expected. `lua` support is not compiled.
 
 On very few test cases.
 
@@ -15,40 +15,35 @@ Feel free to share updates.
 
 
 Current results are:
-
-
 # `./z80/all_instructions.asm`
-
--       basm: 0.026475(0.002644) *
--       rasm: unable to assemble
--  sjasmplus: unable to assemble
+- basm      : 0.027381(0.001508) *
+- rasm      : unable to assemble
+- sjasmplus : unable to assemble
 
 # `./z80/all_instructions_valid.asm`
-
--       basm: 0.025399(0.001986)
--       rasm: 0.004360(0.000243)
--  sjasmplus: 0.002526(0.000106) *
+- basm      : 0.026573(0.001766)
+- rasm      : 0.004734(0.000209)
+- sjasmplus : 0.002559(0.000115) *
 
 # `./z80/hello_world_cpc.asm`
-
--       basm: 0.003856(0.000388)
--       rasm: 0.003839(0.000243)
--  sjasmplus: 0.001333(0.000107) *
+- basm      : 0.004143(0.000555)
+- rasm      : 0.004157(0.000319)
+- sjasmplus : 0.001338(0.000111) *
 
 # `./z80/head_over_heels.asm`
--       basm: unable to assemble
--       rasm: 0.015923(0.000481) *
--  sjasmplus: unable to assemble
+- basm      : unable to assemble
+- rasm      : 0.016847(0.000521) *
+- sjasmplus : unable to assemble
 
 # `./z80/impossaball.asm`
--       basm: unable to assemble
--       rasm: 0.011915(0.000384) *
--  sjasmplus: unable to assemble
+- basm      : unable to assemble
+- rasm      : 0.012792(0.000585) *
+- sjasmplus : unable to assemble
 
 # `./z80/include_files.asm`
--       basm: 0.048019(0.002892)
--       rasm: 0.014683(0.000445) *
--  sjasmplus: 0.044069(0.000729)
+- basm      : 0.048738(0.002534)
+- rasm      : 0.015500(0.000549) *
+- sjasmplus : 0.044605(0.000691)
 
 On this CPU
 

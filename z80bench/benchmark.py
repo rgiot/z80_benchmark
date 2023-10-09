@@ -56,14 +56,14 @@ class Bench(object):
 				timings = [res.duration() for res in values if res.is_ok()]
 
 				if nb_errors > 0:
-					lines.append("- %10s: unable to assemble" % (asm.flavor()) )
+					lines.append("- %-10s: unable to assemble" % (asm.flavor()) )
 					speed.append(np.inf)
 				else:
 
 					mean = np.mean(timings)
 					std = np.std(timings)
 
-					lines.append("- %10s: %f(%f)" % (asm.flavor(), mean, std) )
+					lines.append("- %-10s: %f(%f)" % (asm.flavor(), mean, std) )
 					speed.append(mean)
 			best_idx = np.argmin(speed)
 			lines[best_idx] += " * " # add the marker to the best
