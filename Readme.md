@@ -15,6 +15,9 @@ Feel free to share updates.
 
 
 Current results are:
+
+(./z80/all_instructions.asm is expected to fail as it contains illegal instructions)
+
 ### `./z80/all_instructions.asm`
 - basm      : 0.027381(0.001508) *
 - rasm      : unable to assemble
