@@ -47,7 +47,7 @@ class Bench(object):
 							
 		# make stats
 		for source, results in res.items():
-			print(f"\n# `{source.name()}`")
+			print(f"\n### `{source.name()}`")
 			lines = []
 			speed = []
 			for i, (asm, values) in enumerate(results.items()):

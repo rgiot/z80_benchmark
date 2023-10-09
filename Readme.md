@@ -15,37 +15,37 @@ Feel free to share updates.
 
 
 Current results are:
-# `./z80/all_instructions.asm`
+### `./z80/all_instructions.asm`
 - basm      : 0.027381(0.001508) *
 - rasm      : unable to assemble
 - sjasmplus : unable to assemble
 
-# `./z80/all_instructions_valid.asm`
+### `./z80/all_instructions_valid.asm`
 - basm      : 0.026573(0.001766)
 - rasm      : 0.004734(0.000209)
 - sjasmplus : 0.002559(0.000115) *
 
-# `./z80/hello_world_cpc.asm`
+### `./z80/hello_world_cpc.asm`
 - basm      : 0.004143(0.000555)
 - rasm      : 0.004157(0.000319)
 - sjasmplus : 0.001338(0.000111) *
 
-# `./z80/head_over_heels.asm`
+### `./z80/head_over_heels.asm`
 - basm      : unable to assemble
 - rasm      : 0.016847(0.000521) *
 - sjasmplus : unable to assemble
 
-# `./z80/impossaball.asm`
+### `./z80/impossaball.asm`
 - basm      : unable to assemble
 - rasm      : 0.012792(0.000585) *
 - sjasmplus : unable to assemble
 
-# `./z80/include_files.asm`
+### `./z80/include_files.asm`
 - basm      : 0.048738(0.002534)
 - rasm      : 0.015500(0.000549) *
 - sjasmplus : 0.044605(0.000691)
 
-On this CPU
+On this CPU:
 
 ```
 Architecture:            x86_64
