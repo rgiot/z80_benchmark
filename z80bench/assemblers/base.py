@@ -47,8 +47,12 @@ class Assembler(object):
 	def exec_path(self) -> str:
 		raise NotImplemented
 
-	def cargo_install(self, software):
-		os.system(f"cargo install \"{software}\" --root=\"{self._location}\"")
+	def cargo_install(self, crate=None, path=None):
+		if path is None:
+			os.system(f"cargo install \"{crate}\" --root=\"{self._location}\"")
+		else:
+			assert crate is None
+			os.system(f"cargo install --path \"{path}\" --root=\"{self._location}\"")
 
 	def unwrap_http_archive(self, url):
 		dload.save_unzip(url, self.location())

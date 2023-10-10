@@ -6,18 +6,24 @@ from z80bench.bench.assemblers import Assemblers
 from z80bench.benchmark import Bench
 
 import tempfile
-
+import socket
 
 DEBUG_MODE=True
-
+NB_REPEAT=50
 with tempfile.TemporaryDirectory() as out_dir:
-	#out_dir = "/tmp/tempo"
+	if DEBUG_MODE:
+		out_dir = "/tmp/tempo"
+		NB_REPEAT = 2
+
 
 	print(f"> Working directory: {out_dir}")
 
 	# Build the assemblers list to test
 	assemblers = Assemblers()
 	assemblers.add_assembler(Basm(out_dir))
+	if socket.gethostname() == "hibbert":
+		assemblers.add_assembler(Basm(out_dir, kind="basm_dev"))
+
 	assemblers.add_assembler(Rasm(out_dir))
 	assemblers.add_assembler(Sjasmplus(out_dir))
 
@@ -35,7 +41,7 @@ with tempfile.TemporaryDirectory() as out_dir:
 	sources.add_project(Project("./z80/include_files.asm")) 
 
 
-	bench = Bench(out_dir, assemblers, sources)
+	bench = Bench(out_dir, assemblers, sources, NB_REPEAT)
 	bench.install()
 
 	bench.versions()

@@ -13,6 +13,7 @@ class Bench(object):
 		self.out_dir: str = out_dir
 		self._assemblers: Assemblers = assemblers
 		self._sources: Sources = sources
+		self._repeat = repetition
 
 	def install(self):
 		print("> Install assemblers")
@@ -33,7 +34,7 @@ class Bench(object):
 		res = dict()
 
 		# launch computation
-		for repet in range(100):
+		for _ in range(self._repeat):
 			for (asm, src) in itertools.product(self._assemblers.assemblers(), self._sources.projects()):
 				i_res = self.one_execution(asm, src)
 
