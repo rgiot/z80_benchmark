@@ -1,6 +1,4 @@
-from z80bench.assemblers.basm import Basm
-from z80bench.assemblers.rasm import Rasm
-from z80bench.assemblers.sjasmplus import Sjasmplus
+from z80bench.assemblers import *
 from z80bench.bench.source import Project, Sources
 from z80bench.bench.assemblers import Assemblers
 from z80bench.benchmark import Bench
@@ -26,6 +24,7 @@ with tempfile.TemporaryDirectory() as out_dir:
 
 	assemblers.add_assembler(Rasm(out_dir))
 	assemblers.add_assembler(Sjasmplus(out_dir))
+	assemblers.add_assembler(Pasmo(out_dir))
 
 	# build the programs list to test
 	sources = Sources()
@@ -43,6 +42,7 @@ with tempfile.TemporaryDirectory() as out_dir:
 
 	bench = Bench(out_dir, assemblers, sources, NB_REPEAT)
 	bench.install()
+
 
 	bench.versions()
 

@@ -3,6 +3,10 @@ import abc
 import dload
 import tempfile
 from timeit import default_timer as timer
+from urllib.request import urlopen
+import tarfile
+from io import BytesIO
+
 
 # TODO handle fault
 class AssemblingResult(object):
@@ -54,8 +58,17 @@ class Assembler(object):
 			assert crate is None
 			os.system(f"cargo install --path \"{path}\" --root=\"{self._location}\"")
 
-	def unwrap_http_archive(self, url):
-		dload.save_unzip(url, self.location())
+	def unwrap_http_archive(self, url: str):
+		if url.endswith(".zip"):
+			dload.save_unzip(url, self.location())
+		elif url.endswith(".tar.gz") or url.endswith(".tgz"):
+			r = urlopen(url)
+			t = tarfile.open(name=None, fileobj=BytesIO(r.read()))
+			print(self.location())
+			t.extractall(self.location())
+			t.close()
+		else:
+			raise NotImplementedError("Unable to extract format")
 
 	@abc.abstractmethod
 	def version_option(self) -> str:
