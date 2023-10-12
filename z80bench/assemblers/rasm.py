@@ -5,7 +5,7 @@ import os
 RASM_2_0_SRC_URL = "https://github.com/EdouardBERGE/rasm/archive/refs/tags/v2.0.zip"
 
 class Rasm(Assembler):
-	"""Parser to RASM assembler"""
+	"""Wrapper to RASM assembler"""
 	def __init__(self, base_location):
 		super().__init__(base_location, "rasm")
 		self._inner_folder = "rasm-2.0"

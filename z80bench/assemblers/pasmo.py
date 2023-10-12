@@ -5,7 +5,7 @@ import os
 PASMO_0_5_5_URL = "https://pasmo.speccy.org/bin/pasmo-0.5.5.tar.gz"
 
 class Pasmo(Assembler):
-	"""Parser to Pasmo assembler"""
+	"""Wrapper to Pasmo assembler"""
 	def __init__(self, base_location):
 		super().__init__(base_location, "pasmo")
 		self._inner_folder = "pasmo-0.5.5"

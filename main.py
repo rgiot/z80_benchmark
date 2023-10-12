@@ -25,6 +25,7 @@ with tempfile.TemporaryDirectory() as out_dir:
 	assemblers.add_assembler(Rasm(out_dir))
 	assemblers.add_assembler(Sjasmplus(out_dir))
 	assemblers.add_assembler(Pasmo(out_dir))
+	assemblers.add_assembler(Vasm(out_dir))
 
 	# build the programs list to test
 	sources = Sources()
@@ -42,7 +43,7 @@ with tempfile.TemporaryDirectory() as out_dir:
 
 	bench = Bench(out_dir, assemblers, sources, NB_REPEAT)
 	bench.install()
-
+	#quit()
 
 	bench.versions()
 
