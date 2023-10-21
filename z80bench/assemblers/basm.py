@@ -18,7 +18,7 @@ class Basm(Assembler):
 			self.cargo_install(CRATE_NAME)
 		else:
 			assert socket.gethostname() == "hibbert"
-			self.cargo_install(path=DEV_PATH)
+			self.cargo_install(path=DEV_PATH, features=["rayon"])
 
 
 	def exec_path(self) -> str:

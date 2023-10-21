@@ -1,4 +1,6 @@
 from z80bench.assemblers import *
+from z80bench.bench.msx import MSXProjectsGenerator
+from z80bench.bench.metalgear import MetalGearProjectsGenerator
 from z80bench.bench.source import Project, Sources
 from z80bench.bench.assemblers import Assemblers
 from z80bench.benchmark import Bench
@@ -24,6 +26,7 @@ with tempfile.TemporaryDirectory() as out_dir:
 
 	assemblers.add_assembler(Rasm(out_dir))
 	assemblers.add_assembler(Sjasmplus(out_dir))
+	assemblers.add_assembler(Sjasm(out_dir))
 	assemblers.add_assembler(Pasmo(out_dir))
 	assemblers.add_assembler(Vasm(out_dir))
 	assemblers.add_assembler(WlaDx(out_dir))
@@ -39,9 +42,16 @@ with tempfile.TemporaryDirectory() as out_dir:
 	sources.add_project(Project("./z80/head_over_heels.asm")) 
 	sources.add_project(Project("./z80/impossaball.asm")) 
 
+
 	# TODO Add bigger projects, but compatible with all assemblers
 	sources.add_project(Project("./z80/include_files.asm")) 
 
+	#sources.add_group(MSXProjectsGenerator())
+	sources.add_group(MetalGearProjectsGenerator())
+
+	if False:
+		print(sources._projects)
+		quit()
 
 	bench = Bench(out_dir, assemblers, sources, NB_REPEAT)
 	bench.install()

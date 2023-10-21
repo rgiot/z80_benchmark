@@ -51,12 +51,21 @@ class Assembler(object):
 	def exec_path(self) -> str:
 		raise NotImplemented
 
-	def cargo_install(self, crate=None, path=None):
+	def cargo_install(self, crate=None, path=None, features=None):
+
+		if features is None:
+			features_arg = ""
+		else:
+			features_arg = "--features="+(",".join(features))
+
 		if path is None:
-			os.system(f"cargo install \"{crate}\" --root=\"{self._location}\"")
+			os.system(f"cargo install \"{crate}\" --root=\"{self._location}\" {features_arg}")
 		else:
 			assert crate is None
-			os.system(f"cargo install --path \"{path}\" --root=\"{self._location}\"")
+			line = f"cargo install --path \"{path}\" --root=\"{self._location}\" {features_arg}"
+			res = os.system(line)
+			assert res == 0
+
 
 	def unwrap_http_archive(self, url: str):
 		if url.endswith(".zip"):
@@ -79,11 +88,11 @@ class Assembler(object):
 		os.system(f"{self.exec_path()} {self.version_option()}")
 	
 	@abc.abstractmethod
-	def build(self, fname) -> AssemblingResult:
+	def build(self, fname, includes) -> AssemblingResult:
 		tf = tempfile.NamedTemporaryFile(delete=False)
 		tf.close()
 
-		cmd_line = self.build_cmd_line(fname, tf.name)
+		cmd_line = self.build_cmd_line(fname, tf.name, includes)
 		print(f">> {cmd_line}")
 
 		start = timer()
@@ -95,5 +104,9 @@ class Assembler(object):
 		return AssemblingResult(end-start, code)
 
 	@abc.abstractmethod
-	def build_cmd_line(self, ifname,  ofname):
-		return f"{self.exec_path()} \"{ifname}\" -o \"{ofname}\""
+	def build_cmd_line(self, ifname,  ofname, includes):
+		if includes:
+			includes_arg = " ".join(f"-I\"{i}\""  for i in includes)
+		else:
+			includes_arg = ""
+		return f"{self.exec_path()} \"{ifname}\" -o \"{ofname}\" {includes_arg}"

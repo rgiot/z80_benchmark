@@ -6,6 +6,7 @@ from .sjasmplus import Sjasmplus
 from .vasm import Vasm
 from .wladx import WlaDx
 from .pyz80 import PyZ80
+from .sjasm import Sjasm
 
 __all__ = [
 	"Basm",
@@ -14,5 +15,6 @@ __all__ = [
 	"Sjasmplus",
 	"Vasm",
 	"WlaDx",
-	"PyZ80"
+	"PyZ80",
+	"Sjasm"
 ]

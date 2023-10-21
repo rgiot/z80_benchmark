@@ -27,5 +27,9 @@ class Sjasmplus(Assembler):
 	
 
 	@abc.abstractmethod
-	def build_cmd_line(self, ifname, ofname):
-		return f"{self.exec_path()} \"{ifname}\""
+	def build_cmd_line(self, ifname, ofname, includes):
+		if includes:
+			includes_arg = " ".join(f"-I\"{i}\""  for i in includes)
+		else:
+			includes_arg = ""
+		return f"{self.exec_path()} \"{ifname}\" {includes_arg}"
