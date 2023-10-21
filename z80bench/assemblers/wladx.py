@@ -5,7 +5,7 @@ import os
 WLADX_10_0_5_URL = "https://github.com/vhelin/wla-dx/archive/refs/tags/v10.5.zip"
 
 class WlaDx(Assembler):
-	"""Wrapper  to vasm assembler"""
+	"""Wrapper  to wla-dx assembler"""
 	def __init__(self, base_location):
 		super().__init__(base_location, "wladx")
 		self._inner_folder = "wla-dx-10.5"
