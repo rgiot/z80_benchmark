@@ -15,7 +15,8 @@ class Pasmo(Assembler):
 		
 		super().install()
 		self.unwrap_http_archive(PASMO_0_5_5_URL)
-		os.system(f"cd \"{self.location()}/{self._inner_folder}/\" && ./configure && make -j10")
+		ret = os.system(f"cd \"{self.location()}/{self._inner_folder}/\" && ./configure && make -j10")
+		assert ret == 0
 
 	def exec_path(self) -> str:
 		return os.path.join(self.location(), self._inner_folder, "pasmo")

@@ -19,7 +19,8 @@ class Sjasmplus(Assembler):
 		
 		super().install()
 		self.unwrap_http_archive(SJASMPLUS_1_20_3_URL)
-		os.system(f"cd \"{self.location()}/{self._inner_folder}/\" && make -j10 USE_LUA=0")
+		ret = os.system(f"cd \"{self.location()}/{self._inner_folder}/\" && make -j10 USE_LUA=0")
+		assert ret == 0
 
 	def exec_path(self) -> str:
 		return os.path.join(self.location(), self._inner_folder, "sjasmplus")

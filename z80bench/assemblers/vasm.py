@@ -15,7 +15,8 @@ class Vasm(Assembler):
 		
 		super().install()
 		self.unwrap_http_archive(VASM_URL)
-		os.system(f"cd \"{self.location()}/{self._inner_folder}/\" && make -j10 CPU=z80 SYNTAX=oldstyle")
+		ret = os.system(f"cd \"{self.location()}/{self._inner_folder}/\" && make -j10 CPU=z80 SYNTAX=oldstyle")
+		assert ret == 0
 
 	def exec_path(self) -> str:
 		return os.path.join(self.location(), self._inner_folder, "vasmz80_oldstyle")

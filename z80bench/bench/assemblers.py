@@ -10,7 +10,7 @@ class Assemblers(object):
 
 	def add_assembler(self, assembler: Assembler):
 		flavor = assembler.flavor()
-		assert flavor not in self._flavors
+		assert flavor not in self._flavors, "%s is already present !" % flavor
 
 		self._flavors.append(flavor)
 		self._assemblers[flavor] = assembler

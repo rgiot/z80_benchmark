@@ -6,6 +6,12 @@ Only few assembler are currently tested:
 - `basm` https://cpcsdk.github.io/rust.cpclib/basm/. `cargo` from the `rust` toolchain is expected.
 - `rasm` http://rasm.wikidot.com/english-index:home. `gcc` and `make` are expected.
 - `sjamsplus` https://z00m128.github.io/sjasmplus/documentation.html. `gcc` and `make` are expected. `lua` support is not compiled.
+- `vasm`
+- `pasmo`
+- `wla-dx` 
+
+
+Dependencies for each of these assembler are expected to build them.
 
 On very few test cases.
 

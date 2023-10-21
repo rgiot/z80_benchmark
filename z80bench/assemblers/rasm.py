@@ -15,7 +15,8 @@ class Rasm(Assembler):
 		
 		super().install()
 		self.unwrap_http_archive(RASM_2_0_SRC_URL)
-		os.system(f"cd \"{self.location()}/{self._inner_folder}/\" && make -j10")
+		ret = os.system(f"cd \"{self.location()}/{self._inner_folder}/\" && make -j10")
+		assert ret == 0
 
 	def exec_path(self) -> str:
 		return os.path.join(self.location(), self._inner_folder, "rasm.exe")

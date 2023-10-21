@@ -26,6 +26,7 @@ with tempfile.TemporaryDirectory() as out_dir:
 	assemblers.add_assembler(Sjasmplus(out_dir))
 	assemblers.add_assembler(Pasmo(out_dir))
 	assemblers.add_assembler(Vasm(out_dir))
+	assemblers.add_assembler(WlaDx(out_dir))
 
 	# build the programs list to test
 	sources = Sources()
