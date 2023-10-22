@@ -1,12 +1,13 @@
 from z80bench.assemblers import *
-from z80bench.bench.msx import MSXProjectsGenerator
-from z80bench.bench.metalgear import MetalGearProjectsGenerator
+
+from z80bench.bench import *
 from z80bench.bench.source import Project, Sources
 from z80bench.bench.assemblers import Assemblers
 from z80bench.benchmark import Bench
 
 import tempfile
 import socket
+
 
 DEBUG_MODE=True
 NB_REPEAT=50
@@ -46,9 +47,11 @@ with tempfile.TemporaryDirectory() as out_dir:
 	# TODO Add bigger projects, but compatible with all assemblers
 	sources.add_project(Project("./z80/include_files.asm")) 
 
-	#sources.add_group(MSXProjectsGenerator())
+	sources.add_group(MSXProjectsGenerator())
 	sources.add_group(MetalGearProjectsGenerator())
-
+	sources.add_group(Youkaiyashiki())
+	sources.add_group(LpfpProjectsGenerator())
+	
 	if False:
 		print(sources._projects)
 		quit()

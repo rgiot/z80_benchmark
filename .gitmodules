@@ -4,3 +4,9 @@
 [submodule "z80/MetalGear"]
 	path = z80/MetalGear
 	url = https://github.com/theNestruo/MetalGear.git
+[submodule "z80/youkaiyashiki"]
+	path = z80/youkaiyashiki
+	url = https://github.com/theNestruo/msx-youkaiyashiki-patch.git
+[submodule "z80/lpfp"]
+	path = z80/lpfp
+	url = https://github.com/nagydani/lpfp.git

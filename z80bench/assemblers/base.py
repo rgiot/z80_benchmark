@@ -96,7 +96,7 @@ class Assembler(object):
 		print(f">> {cmd_line}")
 
 		start = timer()
-		code = os.system(cmd_line)
+		code = os.system(f"{cmd_line} > /dev/null 2>/dev/null")
 		end = timer()
 
 		os.unlink(tf.name)

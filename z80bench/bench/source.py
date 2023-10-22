@@ -4,7 +4,7 @@ import os
 
 class Project(object):
 	def __init__(self, fname: str, includes: List[str] = None):
-		self._fname = fname
+		self._fname = os.path.realpath(fname)
 		self._includes = includes
 
 	def build_with(self, asm: Assembler):

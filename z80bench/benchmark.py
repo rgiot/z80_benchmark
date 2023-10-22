@@ -1,5 +1,7 @@
 import itertools
 import numpy as np
+import pandas as pd
+import os
 
 
 from z80bench.bench.source import Project, Sources
@@ -47,26 +49,53 @@ class Bench(object):
 				res[src][asm].append(i_res)
 							
 		# make stats
+		sources, flavors, mean, std, failures = [], [], [], [], []
 		for source, results in res.items():
-			print(f"\n### `{source.name()}`")
-			lines = []
-			speed = []
 			for i, (asm, values) in enumerate(results.items()):
+				sources.append(os.path.relpath(source.name()))
 				nb_errors = len([1 for res in values if res.is_err()])
 				nb_tries = len(values)
+				failures.append(nb_errors * 100 /nb_tries)
 				timings = [res.duration() for res in values if res.is_ok()]
 
 				if nb_errors > 0:
-					lines.append("- %-10s: unable to assemble" % (asm.flavor()) )
-					speed.append(np.inf)
+					mean.append(np.nan)
+					std.append(np.nan)
 				else:
+					mean.append(np.mean(timings))
+					std.append(np.std(timings))
 
-					mean = np.mean(timings)
-					std = np.std(timings)
+				flavors.append(asm.flavor())
 
-					lines.append("- %-10s: %f(%f)" % (asm.flavor(), mean, std) )
-					speed.append(mean)
-			best_idx = np.argmin(speed)
-			lines[best_idx] += " * " # add the marker to the best
-			print("\n".join(lines)) # draw the results
 
+		print(len(sources), len(flavors), len(mean), len(std), len(failures))
+
+		df = pd.DataFrame.from_dict({
+			'Source': sources,
+			'Assembler': flavors,
+			'Mean': mean,
+			'Std': std,
+			'Failing ratio': failures
+		})
+
+		def build_representation(row):
+			print(row)
+			if row['Failing ratio'] != 0:
+				return "Failure."
+			else:
+				return "%0.3f (%0.3f)" % (row["Mean"], row["Std"])
+		df["Speed"] = df.apply(build_representation, axis=1)
+
+		table = df.pivot(values = "Speed", index = "Source", columns = "Assembler")
+		success1 = table.apply(lambda val : val != "Failure.").mean()
+		success2 = table.apply(lambda val : val != "Failure.").mean(axis=1)
+
+
+		print("## Summary of assembling time")
+		print(table.to_markdown())
+
+		print("# Success rate over assemblers")
+		print(success1.to_markdown())
+
+		print("#Success rate over projects")
+		print(success2.to_markdown())
