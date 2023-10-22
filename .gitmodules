@@ -13,3 +13,6 @@
 [submodule "z80/CPC6128-Firmware-Source"]
 	path = z80/CPC6128-Firmware-Source
 	url = https://github.com/Bread80/CPC6128-Firmware-Source.git
+[submodule "z80/AmstradBasic"]
+	path = z80/AmstradBasic
+	url = https://github.com/Bread80/Amstrad-CPC-BASIC-Source.git
