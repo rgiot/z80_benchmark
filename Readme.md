@@ -24,6 +24,7 @@ Current results follows. Some remarks:
 
 - `./z80/all_instructions.asm` is expected to fail as it contains illegal instructions
 - Some pairs (source code, assembler) may fail because I have not (yet) properly set up the appropriate options
+- The produced binary is not verified against a groundtruth
 - Tests are done on this CPU:
 
 ```
