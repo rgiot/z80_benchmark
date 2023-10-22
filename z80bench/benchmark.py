@@ -31,13 +31,13 @@ class Bench(object):
 	def one_execution(self, assembler: Assembler, project: Project) -> AssemblingResult :
 		return project.build_with(assembler)
 
-	def run(self):
+	def run(self, filter):
 		print("> Run benchmark")
 		res = dict()
 
 		# launch computation
 		for _ in range(self._repeat):
-			for (asm, src) in itertools.product(self._assemblers.assemblers(), self._sources.projects()):
+			for (asm, src) in itertools.product(self._assemblers.assemblers(), self._sources.projects(filter)):
 				i_res = self.one_execution(asm, src)
 
 				if src not in res:

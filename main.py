@@ -7,7 +7,7 @@ from z80bench.benchmark import Bench
 
 import tempfile
 import socket
-
+import sys
 
 DEBUG_MODE=True
 NB_REPEAT=50
@@ -51,7 +51,8 @@ with tempfile.TemporaryDirectory() as out_dir:
 	sources.add_group(MetalGearProjectsGenerator())
 	sources.add_group(Youkaiyashiki())
 	sources.add_group(LpfpProjectsGenerator())
-	
+	sources.add_group(CPC6128FirmwareProjectsGenerator())
+
 	if False:
 		print(sources._projects)
 		quit()
@@ -62,4 +63,8 @@ with tempfile.TemporaryDirectory() as out_dir:
 
 	bench.versions()
 
-	bench.run()
+	if len(sys.argv) > 1:
+		filter = sys.argv[1]
+	else:
+		filter = None
+	bench.run(filter)

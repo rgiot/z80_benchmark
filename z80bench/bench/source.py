@@ -28,5 +28,5 @@ class Sources(object):
 		for p in group:
 			self.add_project(p)
 
-	def projects(self):
-		return self._projects
+	def projects(self, filter):
+		return [p for p in self._projects if filter is None or filter in p.name()]
