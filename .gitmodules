@@ -16,3 +16,6 @@
 [submodule "z80/AmstradBasic"]
 	path = z80/AmstradBasic
 	url = https://github.com/Bread80/Amstrad-CPC-BASIC-Source.git
+[submodule "z80/muckypaws"]
+	path = z80/muckypaws
+	url = https://github.com/muckypaws/AmstradCPC.git

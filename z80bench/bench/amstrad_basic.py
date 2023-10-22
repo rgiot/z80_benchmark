@@ -1,6 +1,5 @@
 from z80bench.bench.source import Project
 import os
-import itertools
 
 class AmstradBasicProjectsGenerator(object):
 	def __init__(self):

@@ -53,7 +53,9 @@ with tempfile.TemporaryDirectory() as out_dir:
 	sources.add_group(LpfpProjectsGenerator())
 	sources.add_group(CPC6128FirmwareProjectsGenerator())
 	sources.add_group(AmstradBasicProjectsGenerator())
-
+	sources.add_group(MuckyPawsProjectsGenerator())
+	sources.add_group(DotCommandsProjectsGenerator())
+	
 	if False:
 		print(sources._projects)
 		quit()

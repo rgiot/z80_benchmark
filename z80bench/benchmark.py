@@ -83,10 +83,10 @@ class Bench(object):
 			if row['Failing ratio'] != 0:
 				return "Failure."
 			else:
-				return "%0.3f (%0.3f)" % (row["Mean"], row["Std"])
-		df["Speed"] = df.apply(build_representation, axis=1)
+				return "%0.5f (%0.5f)" % (row["Mean"], row["Std"])
+		df["Speed (seconds)"] = df.apply(build_representation, axis=1)
 
-		table = df.pivot(values = "Speed", index = "Source", columns = "Assembler")
+		table = df.pivot(values = "Speed (seconds)", index = "Source", columns = "Assembler")
 		success1 = table.apply(lambda val : val != "Failure.").mean()
 		success2 = table.apply(lambda val : val != "Failure.").mean(axis=1)
 
