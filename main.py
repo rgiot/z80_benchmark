@@ -9,7 +9,7 @@ import tempfile
 import socket
 import sys
 
-DEBUG_MODE=True
+DEBUG_MODE=False
 NB_REPEAT=50
 with tempfile.TemporaryDirectory() as out_dir:
 	if DEBUG_MODE:
@@ -55,7 +55,10 @@ with tempfile.TemporaryDirectory() as out_dir:
 	sources.add_group(AmstradBasicProjectsGenerator())
 	sources.add_group(MuckyPawsProjectsGenerator())
 	sources.add_group(DotCommandsProjectsGenerator())
-	
+	sources.add_group(ZxLuaProjectsGenerator())
+	sources.add_group(Z80CryptosProjectsGenerator())
+	sources.add_group(Z80VmProjectsGenerator())
+
 	if False:
 		print(sources._projects)
 		quit()

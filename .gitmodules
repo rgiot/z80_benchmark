@@ -19,3 +19,6 @@
 [submodule "z80/muckypaws"]
 	path = z80/muckypaws
 	url = https://github.com/muckypaws/AmstradCPC.git
+[submodule "z80/z80_crypto"]
+	path = z80/z80_crypto
+	url = https://github.com/nagydani/z80_crypto.git

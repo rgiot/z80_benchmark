@@ -91,11 +91,11 @@ class Bench(object):
 		success2 = table.apply(lambda val : val != "Failure.").mean(axis=1)
 
 
-		print("## Summary of assembling time")
+		print("## Summary of assembling time\n")
 		print(table.to_markdown())
 
-		print("# Success rate over assemblers")
+		print("\n## Success rate over assemblers\n")
 		print(success1.to_markdown())
 
-		print("#Success rate over projects")
+		print("\n## Success rate over projects\n")
 		print(success2.to_markdown())

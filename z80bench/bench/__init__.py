@@ -7,6 +7,9 @@ from .cpc6128firmware import CPC6128FirmwareProjectsGenerator
 from .amstrad_basic import AmstradBasicProjectsGenerator
 from .muckypaws import MuckyPawsProjectsGenerator
 from .dotcommands import DotCommandsProjectsGenerator
+from .zx_lua import ZxLuaProjectsGenerator
+from .z80_crypto import Z80CryptosProjectsGenerator
+from .z80_vm import Z80VmProjectsGenerator
 
 __all__ = [
 	"MSXProjectsGenerator",
@@ -16,5 +19,8 @@ __all__ = [
 	"CPC6128FirmwareProjectsGenerator",
 	"AmstradBasicProjectsGenerator",
 	"MuckyPawsProjectsGenerator",
-	"DotCommandsProjectsGenerator"
+	"DotCommandsProjectsGenerator",
+	"ZxLuaProjectsGenerator",
+	"Z80CryptosProjectsGenerator",
+	"Z80VmProjectsGenerator"
 ]
