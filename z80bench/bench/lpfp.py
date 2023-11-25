@@ -15,8 +15,8 @@ class LpfpProjectsGenerator(object):
 		
 	def test_projects(self):
 		filenames = [
-			os.path.join(self._dir, "lpfp", "addtest.asm"),
-			os.path.join(self._dir, "lpfp", "subtest.asm"),
+			os.path.join(self._dir, "test", "addtest.asm"),
+			os.path.join(self._dir, "test", "subtest.asm"),
 		]
 		for filename in filenames:
 			yield Project(filename)

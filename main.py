@@ -8,9 +8,26 @@ from z80bench.benchmark import Bench
 import tempfile
 import socket
 import sys
+import argparse
 
-DEBUG_MODE=False
-NB_REPEAT=50
+
+parser = argparse.ArgumentParser(
+                    prog='z80bench',
+                    description='A (not yet successfull) tentative to compare z80 assembler on various source code',
+                    )
+
+parser.add_argument('-d', '--debug',
+                    action='store_true',
+					default=False)  
+parser.add_argument('-a', '--assembler')
+parser.add_argument('-t', '--test')
+parser.add_argument('-r', '--repetitions', default=50)
+
+args = parser.parse_args()
+print(args)
+
+DEBUG_MODE=args.debug
+NB_REPEAT=args.repetitions
 with tempfile.TemporaryDirectory() as out_dir:
 	if DEBUG_MODE:
 		out_dir = "/tmp/tempo"
@@ -20,7 +37,7 @@ with tempfile.TemporaryDirectory() as out_dir:
 	print(f"> Working directory: {out_dir}")
 
 	# Build the assemblers list to test
-	assemblers = Assemblers()
+	assemblers = Assemblers(args.assembler)
 	assemblers.add_assembler(Basm(out_dir))
 	if socket.gethostname() == "hibbert":
 		assemblers.add_assembler(Basm(out_dir, kind="basm_dev"))
@@ -69,8 +86,5 @@ with tempfile.TemporaryDirectory() as out_dir:
 
 	bench.versions()
 
-	if len(sys.argv) > 1:
-		filter = sys.argv[1]
-	else:
-		filter = None
-	bench.run(filter)
+
+	bench.run(filter_tests=args.test)
