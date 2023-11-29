@@ -21,7 +21,7 @@ parser.add_argument('-d', '--debug',
 					default=False)  
 parser.add_argument('-a', '--assembler')
 parser.add_argument('-t', '--test')
-parser.add_argument('-r', '--repetitions', default=50)
+parser.add_argument('-r', '--repetitions', default=50, type=int)
 
 args = parser.parse_args()
 print(args)

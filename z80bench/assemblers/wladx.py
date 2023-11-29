@@ -19,5 +19,13 @@ class WlaDx(Assembler):
 		assert ret == 0
 
 	def exec_path(self) -> str:
-		return os.path.join(self.location(), self._inner_folder, "binaries", "wla-z80")
+		p = os.path.join(self.location(), self._inner_folder, "binaries", "wla-z80")
+		return p
 	
+
+	def build_cmd_line(self, ifname,  ofname, includes):
+		if includes:
+			includes_arg = " ".join(f"-I\"{i}\""  for i in includes)
+		else:
+			includes_arg = ""
+		return f"{self.exec_path()} {includes_arg} -o \"{ofname}\" \"{ifname}\"  "
